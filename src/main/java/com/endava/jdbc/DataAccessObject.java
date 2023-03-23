@@ -3,6 +3,7 @@ package com.endava.jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+@Deprecated
 public class DataAccessObject {
 
     static final String DB_URL = "jdbc:postgresql://localhost:5432/jdbc";
@@ -20,11 +21,7 @@ public class DataAccessObject {
     }
 
     public void createNewEmployeeTable() {
-        try {
-            jdbcTemplate.execute("create table employees (id int, name varchar(10))");
-        } catch (Exception e) {
-            System.out.println("Could not create employee table " + e.getMessage());
-        }
+        jdbcTemplate.execute("create table employees (id int, name varchar(10))");
     }
 
     public void dropTableEmployee() {
@@ -33,6 +30,10 @@ public class DataAccessObject {
         } catch (Exception e) {
             System.out.println("Could not drop the employee table " + e.getMessage());
         }
+    }
+
+    public void insertIntoEmployee() {
+        jdbcTemplate.execute("insert into employees (1, \"Jim\")");
     }
 
 }
